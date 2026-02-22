@@ -18,30 +18,39 @@ function actualizarMovimientoYSprite() {
     state = obtenerEstadoJugador();
 
     // ───────────── SPRITES DE ESTADO FIJO ─────────────
-    if (state == "idle") {
+    if (state == Estado.IDLE) {
         image_speed = 1;
         sprite_index = asset_get_index("spr_player_idle_" + string(facing));
         stopped = false;
+        last_main_axis = "";
         return;
     }
 
-    if (state == "stopped") {
+    if (state == Estado.STOPPED) {
         image_speed = 1;
         sprite_index = asset_get_index("spr_player_stop_" + string(facing));
-		return;
+        return;
+    }
+
+    // ───────────── ESTADO DE ATAQUE ─────────────
+    if (state == Estado.ATTACK) {
+        image_speed = 1;
+        sprite_index = asset_get_index("spr_player_attack_" + string(facing));
+        stopped = false;
+        // Solo inicializar el ataque en el primer frame (evita resetear el alarm cada frame)
+        if (!isAttacking) {
+            isReady = false;
+            isAttacking = true;
+            alarm[0] = room_speed * cdAttackS;
+        }
+        return; // Salir para no ejecutar lógica de movimiento
     }
 
     // Si no está detenido, lo desactivamos
     stopped = false;
-	
-	if (state == "attack") {
-        image_speed = 1;
-		isReady = false
-        alarm[0] = room_speed * 3;
-    }
 
     // ───────────── VELOCIDAD SEGÚN ESTADO ─────────────
-    v = (state == "run") ? vr : vw;
+    v = (state == Estado.RUN) ? vr : vw;
 
     // ───────────── REGISTRO DE TECLA ─────────────
     if (keyboard_check_pressed(key_right) && !left) {
@@ -92,13 +101,15 @@ function actualizarMovimientoYSprite() {
     // ───────────── CAMBIO DE SPRITE SEGÚN ESTADO ─────────────
     if (speed > 0 && !horizontal_conflict && !vertical_conflict) {
         image_speed = 1;
-		if(isReady){
-        var base_sprite = "spr_player_" + string(state) + "_" + string(facing);
-        sprite_index = asset_get_index(base_sprite);}
-    }
-
-    // ───────────── RESET DE PRIORIDAD ─────────────
-    if (!moving_horizontal && !moving_vertical && state == "idle") {
-        last_main_axis = "";
+        var state_name;
+        switch (state) {
+            case Estado.WALK: state_name = "walk"; break;
+            case Estado.RUN:  state_name = "run";  break;
+        }
+        sprite_index = asset_get_index("spr_player_" + state_name + "_" + string(facing));
+    } else if (speed == 0) {
+        // Teclas en conflicto o sin movimiento efectivo: mostrar idle
+        image_speed = 1;
+        sprite_index = asset_get_index("spr_player_idle_" + string(facing));
     }
 }
