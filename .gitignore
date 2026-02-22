@@ -54,6 +54,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
  
-# GameMaker temporary files
+# GameMaker temporal y generado
 *.resource_order
 *.old
+*.yy~
+/.cache/
+/Temp/
+/builds/
+*.gml.bak
