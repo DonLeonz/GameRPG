@@ -59,12 +59,13 @@ Blank Pixel Game/
 ### Fase 2: Sistema RPG
 - [ ] Stats del personaje (HP, MP, ATK, DEF, etc.)
 - [ ] Sistema de experiencia y niveles
-- [ ] Inventario y equipamiento
+- [ ] Inventario y equipamiento (armas, armaduras, accesorios)
 
 ### Fase 3: Exploración y mundo
 - [ ] NPCs con diálogos
-- [ ] Mapas conectados
-- [ ] Cofres y triggers en el mapa
+- [ ] Sistema de mapas conectados
+- [ ] Cofres y objetos interactuables
+- [ ] Eventos y triggers en el mapa
 
 ### Fase 4: Historia y contenido
 - [ ] Sistema de party (múltiples personajes)
