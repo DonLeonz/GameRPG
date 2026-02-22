@@ -48,6 +48,29 @@ Blank Pixel Game/
 └── rooms/                 # Habitaciones del juego
 ```
 
+## Próximas características planeadas
+
+### Fase 1: Sistema de combate por turnos
+- [ ] Transición de exploración a combate
+- [ ] Sistema de turnos estilo Chrono Trigger
+- [ ] Menú de acciones (Atacar, Técnica, Item, Huir)
+- [ ] Sistema de combos y técnicas especiales
+
+### Fase 2: Sistema RPG
+- [ ] Stats del personaje (HP, MP, ATK, DEF, etc.)
+- [ ] Sistema de experiencia y niveles
+- [ ] Inventario y equipamiento
+
+### Fase 3: Exploración y mundo
+- [ ] NPCs con diálogos
+- [ ] Mapas conectados
+- [ ] Cofres y triggers en el mapa
+
+### Fase 4: Historia y contenido
+- [ ] Sistema de party (múltiples personajes)
+- [ ] Cinemáticas y eventos scripted
+- [ ] Misiones principales y secundarias
+
 ## Tecnologías
 - **Motor:** GameMaker Studio 2
 - **Lenguaje:** GML 2.3+
